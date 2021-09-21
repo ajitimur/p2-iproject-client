@@ -3,11 +3,12 @@
 
 		<div class="col-md-4">
     
-    <div class="profile-card-2"><img src="http://envato.jayasankarkr.in/code/profile/assets/img/profile-2.jpg" class="img img-responsive">
-        <div class="profile-name">JOHN DOE</div>
-        <div class="profile-username">@johndoesurname</div>
-        <div class="profile-icons"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-linkedin"></i></a></div>
+    <div class="profile-card-2"><img src="https://image.tmdb.org/t/p/w300/kv2Qk9MKFFQo4WQPaYta599HkJP.jpg" class="img img-responsive">
+        <!-- <div class="profile-name">The Boss Baby: Family Business</div>
+        <div class="profile-username">@johndoesurname</div> -->
     </div>
+    <h6>The Boss Baby: Family Business</h6>
+    <p>2021</p>
 </div>
 
 
