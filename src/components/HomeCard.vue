@@ -3,12 +3,14 @@
 
 		<div class="col-md-4">
     
-    <div class="profile-card-2"><img src="https://image.tmdb.org/t/p/w300/kv2Qk9MKFFQo4WQPaYta599HkJP.jpg" class="img img-responsive">
-        <!-- <div class="profile-name">The Boss Baby: Family Business</div>
-        <div class="profile-username">@johndoesurname</div> -->
+    <div class="profile-card-2">
+      <router-link :to="{name : `DetailPage`, params: {MovieId: movie.id}}">
+        <img :src="this.imageSrc" class="img img-responsive" >
+        </router-link>
+       
     </div>
-    <h6>The Boss Baby: Family Business</h6>
-    <p>2021</p>
+    <h6>{{movie.original_title}}</h6>
+    <small>{{this.year}}</small>
 </div>
 
 
@@ -18,7 +20,21 @@
 
 <script>
 export default {
-  name: `HomeCard`
+  name: `HomeCard`,
+  props: [`movie`],
+  methods: {
+   
+  },
+  computed: {
+    year(){
+      let getYear = new Date(this.movie.release_date).getFullYear();
+      return getYear
+    },
+    imageSrc(){
+      let link = this.movie.poster_path
+      return `https://image.tmdb.org/t/p/w300${link}`
+    }
+  }
 }
 </script>
 

@@ -16,14 +16,14 @@
                     </div>
                     <div class="row px-3"> <label class="mb-1">
                             <h6 class="mb-0 text-sm">Username</h6>
-                        </label> <input class="mb-4" type="text" name="email" placeholder="Enter a Username"> </div>
+                        </label> <input v-model="username" class="mb-4" type="text" name="email" placeholder="Enter a Username"> </div>
                     <div class="row px-3"> <label class="mb-1">
                             <h6 class="mb-0 text-sm">Email Address</h6>
-                        </label> <input class="mb-4" type="text" name="email" placeholder="Enter a valid email address"> </div>
+                        </label> <input v-model="email" class="mb-4" type="text" name="email" placeholder="Enter a valid email address"> </div>
                     <div class="row px-3"> <label class="mb-1">
                             <h6 class="mb-0 text-sm">Password</h6>
-                        </label> <input type="password" name="password" placeholder="Enter password"> </div>
-                    <div class="mx-auto"> <button type="submit"  class="btn btn-blue text-center">Register</button> </div>
+                        </label> <input v-model="password" type="password" name="password" placeholder="Enter password"> </div>
+                    <div class="mx-auto"> <button type="submit" @click="register"  class="btn btn-blue text-center">Register</button> </div>
                     
                 </div>
             </div>
@@ -39,7 +39,24 @@
 
 <script>
 export default {
-  name: `Register`
+  name: `Register`,
+  data(){
+    return {
+      username: "",
+      email: "",
+      password: ""
+    }
+  },
+  methods: {
+    register(){
+      let payload = {
+      username: this.username,
+      email: this.email,
+      password: this.password
+      }
+      this.$store.dispatch(`register`, payload)
+    }
+  }
 }
 </script>
 

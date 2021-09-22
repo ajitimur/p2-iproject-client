@@ -12,28 +12,29 @@
                 <div class="card2 card border-0 px-4 py-5">
                     <div class="row mb-4 px-3">
                         <h6 class="mb-0 mr-4 mt-2">Sign in with</h6>
-                        <div class="facebook text-center mr-3">
-                            <div class="fa fa-facebook"></div>
-                        </div>
-                        <div class="twitter text-center mr-3">
-                            <div class="fa fa-twitter"></div>
-                        </div>
-                        <div class="linkedin text-center mr-3">
-                            <div class="fa fa-linkedin"></div>
-                        </div>
                     </div>
+                    <div class="row mb-4 px-3">
+                        <GoogleLogin
+            class="g-signin2 "
+            :params="params"
+            :renderParams="renderParams"
+            :onSuccess="onSuccess"
+            :onFailure="onFailure"
+            
+          ></GoogleLogin>
+          </div>
                     <div class="row px-3 mb-4">
                         <div class="line"></div> <small class="or text-center">Or</small>
                         <div class="line"></div>
                     </div>
                     <div class="row px-3"> <label class="mb-1">
                             <h6 class="mb-0 text-sm">Email Address</h6>
-                        </label> <input class="mb-4" type="text" name="email" placeholder="Enter a valid email address"> </div>
+                        </label> <input v-model="email" class="mb-4" type="text" name="email" placeholder="Enter a valid email address"> </div>
                     <div class="row px-3"> <label class="mb-1">
                             <h6 class="mb-0 text-sm">Password</h6>
-                        </label> <input type="password" name="password" placeholder="Enter password"> </div>
-                    <div class="mx-auto"> <button type="submit"  class="btn btn-blue text-center">Login</button> </div>
-                    <div class="row mb-4 px-3"> <small class="font-weight-bold">Don't have an account? <a class="text-danger ">Register</a></small> </div>
+                        </label> <input v-model="password" type="password" name="password" placeholder="Enter password"> </div>
+                    <div class="mx-auto"> <button @click="login" type="submit"  class="btn btn-blue text-center">Login</button> </div>
+                    <div class="row mb-4 px-3"> <small class="font-weight-bold">Don't have an account? <router-link to="/register" class="text-primary ">Register</router-link></small> </div>
                 </div>
             </div>
         </div>
@@ -47,8 +48,50 @@
 </template>
 
 <script>
+import GoogleLogin from 'vue-google-login';
+
 export default {
-  name: `Login`
+  name: `Login`,
+  data(){
+    return {
+      email: "",
+      password: "",
+       params: {
+         client_id: "51106757725-v7rogo62ioe3t3fqtaqcjtidc5t6q60v.apps.googleusercontent.com"
+        },
+                // only needed if you want to render the button with the google ui
+      renderParams: {
+        width: 460,
+        height: 50,
+        longtitle: true,
+        
+        }
+    }
+  },
+  components: {
+    GoogleLogin
+  },
+  methods: {
+    login(){
+      let payload = {
+        email: this.email,
+        password: this.password
+      }
+      this.$store.dispatch(`userLogin`, payload)
+    },
+    onSuccess(googleUser) {
+      
+      let id_token = googleUser.getAuthResponse().id_token;
+      
+      this.$store.dispatch(`googleLogin`, id_token)
+ 
+      
+            
+    },
+    onFailure(err){
+      console.log(err);
+    }
+  }
 }
 </script>
 
