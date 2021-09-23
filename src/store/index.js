@@ -180,9 +180,9 @@ export default new Vuex.Store({
         method: `POST`,
         url: `${this.state.baseUrl}/translate`,
         data: {
-          text: payload,
-          tl: `id`,
-          sl: `en`
+          text: payload.text,
+          tl: payload.tl,
+          sl: payload.sl
         }
       })
       .then(({data}) => {

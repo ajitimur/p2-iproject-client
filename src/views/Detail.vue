@@ -19,7 +19,8 @@
                 <div class="row px-3 justify-content-center mt-4 mb-5 border-line">
                   <h3 >{{singleMovie.original_title}}</h3>
                   <p class="lead">{{this.text ? this.text : this.overview}}</p>
-                  <a @click.prevent="translate" href="" class="translate_icon"><i class="fa fa-language" aria-hidden="true"></i><small>translate to Bahasa Indonesia</small></a>
+                  <a @click.prevent="translate(); isTranslated = true" v-if="!isTranslated" href="" class="translate_icon"><i class="fa fa-language" aria-hidden="true"></i><small>translate to Bahasa Indonesia</small></a>
+                  <a @click.prevent="translate(); isTranslated = false" v-if="isTranslated" href="" class="translate_icon"><i class="fa fa-language" aria-hidden="true"></i><small>translate to English</small></a>
                 </div>
               </div>
             </div>
@@ -53,13 +54,27 @@ export default {
   data(){
     return {
       id: 0,
-      review: null
+      review: null,
+      isTranslated: false
     }
   },
   methods: {
     translate(){
-      let payload = this.overview
-      this.$store.dispatch(`translate`, payload)
+      if(!this.isTranslated){
+        let payload = {
+          text: this.overview,
+          tl: `id`,
+          sl: `en`
+        }
+        this.$store.dispatch(`translate`, payload)
+      } else {
+        let payload = {
+          text: this.overview,
+          tl: `en`,
+          sl: `id`
+        }
+        this.$store.dispatch(`translate`, payload)
+      }
       
       
     },
