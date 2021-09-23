@@ -25,7 +25,7 @@
     </div>
   </div>
   </div>
- 
+ <HFooter></HFooter>
 
   </div>
 </template>
@@ -34,6 +34,7 @@
 // @ is an alias to /src
 
 import HomeCard from "@/components/HomeCard.vue";
+import HFooter from 'vue-hacktiv8-footer'
 
 export default {
   name: "Home",
@@ -48,6 +49,7 @@ export default {
   },
   components: {
     HomeCard,
+    HFooter
   },
 
   methods: {

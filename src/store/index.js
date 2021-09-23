@@ -8,7 +8,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    baseUrl: `http://localhost:3000`,
+    baseUrl: `https://timur-movie-app.herokuapp.com`,
     movies: [],
     singleMovie: [],
     isLogin: localStorage.getItem(`access_token`) ? true : false,

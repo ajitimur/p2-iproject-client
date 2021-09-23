@@ -44,11 +44,13 @@
             </div>
         </div>
     </div>
+    <HFooter></HFooter>
 </div>
 </template>
 
 <script>
 import GoogleLogin from 'vue-google-login';
+import HFooter from 'vue-hacktiv8-footer'
 
 export default {
   name: `Login`,
@@ -69,7 +71,8 @@ export default {
     }
   },
   components: {
-    GoogleLogin
+    GoogleLogin,
+    HFooter
   },
   methods: {
     login(){

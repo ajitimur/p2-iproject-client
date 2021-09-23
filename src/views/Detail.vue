@@ -39,17 +39,20 @@
     <comment-form v-if="isLogin" :review="review"></comment-form>
 </div>
 <!-- end of container -->
+<HFooter></HFooter>
   </div>
 </template>
 
 <script>
 import CommentCard from "@/components/CommentCard.vue"
 import CommentForm from "@/components/CommentForm.vue"
+import HFooter from 'vue-hacktiv8-footer'
 export default {
   name: `DetailPage`,
   components: {
     CommentCard,
-    CommentForm
+    CommentForm,
+    HFooter
   },
   data(){
     return {
